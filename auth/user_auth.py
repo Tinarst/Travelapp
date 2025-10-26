@@ -65,7 +65,7 @@ class TripAuth:
             connection.POST(query)
 
     def available_trips(self):
-        query = "SELECT * FROM trip WHERE expired = false and id != 21"
+        query = "SELECT * FROM trip WHERE expired = false"
         with connection:
             responce = connection.GET(query)
             return responce
@@ -73,7 +73,7 @@ class TripAuth:
     def get_special_trip(self, trip_id):
         """Return trip if not expired"""
 
-        query = f"SELECT id, price, capacity, departure_date FROM trip WHERE id = {trip_id} and expired = false and id != 21"
+        query = f"SELECT id, price, capacity, departure_date FROM trip WHERE id = {trip_id} and expired = false"
         with connection:
             responce = connection.GET(query)
             return responce
