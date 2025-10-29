@@ -242,13 +242,11 @@ def CLI():
             if trips:
                 try:
                     trip_id = int(input("Enter Trip ID for update: "))
-                    if trip_agent.get_special_trip(trip_id):
-                        departure_date = input("Enter Date For update: ")
+                    
+                    departure_date = input("Enter Date For update: ")
 
-                        admin.update_trip(trip_id, departure_date)
+                    admin.update_trip(trip_id, departure_date)
 
-                    else:
-                        print("Invalid Trip ID for update")
                 except:
                     print("Update Faild")
                     
