@@ -1,7 +1,0 @@
-2025-10-22 21:20:36,984-CRITICAL-Could Not POST Data syntax error at or near "tina"
-LINE 1: ...SERT INTO log (level, msg) VALUES ('INFO', 'User 'tina' Sign...
-                                                             ^
-2025-10-22 21:23:23,577-CRITICAL-Could Not POST Data syntax error at or near "tina"
-LINE 1: ...SERT INTO log (level, msg) VALUES ('INFO', 'User 'tina' Sign...
-                                                             ^
-2025-10-22 21:31:28,519-CRITICAL-Could Not GET Data
