@@ -9,6 +9,7 @@ from exception.ticketservice import (
     NoCapacity,
 )
 import datetime
+import os
 
 """responsible for control objects"""
 
@@ -86,7 +87,24 @@ class Trip:
                 self.auth.expire_edit(trip_id)
 
                 logger.info(f"Trip {trip_id} Expired")
+                
+    @staticmethod
+    def __test_ticket_filter(func):
+        def wrapper(self):
+            trips = list(func(self))
+            
+            if os.getenv("test_mode") != "1":
+                test_data = next((trip for trip in trips if "test" in trip), None)
+                try:
+                    trips.remove(test_data)
+                except ValueError:
+                    ...
+            
+            return trips
 
+        return wrapper
+
+    @__test_ticket_filter
     def available_trips(self):
         """Return available list of tuple tickets"""
 
@@ -199,6 +217,8 @@ class TicketService:
             if not trip:
                 # Check trip existance/ expire or invalid
                 raise TicketNotFound()
+            elif os.getenv("test_mode") != "1" and trip_id == 21:
+                raise TicketNotFound()
             elif active_ticket:
                 # Check used ticket for current user
                 raise TicketAlreadyExist()
@@ -270,6 +290,8 @@ class TicketService:
         try:
             if not trip:
                 # Check trip existance/ expire or invalid
+                raise TicketNotFound()
+            elif os.getenv("test_mode") != "1" and trip_id == 21:
                 raise TicketNotFound()
             elif not active_ticket:
                 # Check used for current user
