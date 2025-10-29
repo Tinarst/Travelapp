@@ -307,7 +307,7 @@ class TicketService:
                         amount = trip[1] * 8 / 10
                         self.user.increase_wallet(amount, "cancel ticket")
 
-                elif 0 <= remaining < 24:
+                elif datetime.timedelta(hours=0) <= remaining < datetime.timedelta(hours=24):
 
                     print(
                         "Less than 24 hours left until departure; No refund will be made to the wallet"
@@ -333,3 +333,5 @@ class TicketService:
             print(
                 f"Chair does not Submitted in position {chair_number} For trip {trip_id}"
             )
+        except Exception as e:
+            print(e)
