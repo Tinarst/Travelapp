@@ -68,9 +68,10 @@ class AdminServiceTicketAuth:
     def all_users(self):
         query = """
         SELECT id, username, wallet, count(user_id) FROM users
-        JOIN ticket
+        LEFT JOIN ticket
         ON users.id = ticket.user_id
-        GROUP BY id, username, wallet, user_id;
+        WHERE username != 'test'
+        GROUP BY id, username, wallet, user_id
         """
         with connection:
             responce = connection.GET(query)
