@@ -44,7 +44,7 @@ class AdminServiceTicketAuth:
             return responce
 
     def get_special_trip(self, trip_id):
-        query = f"SELECT id FROM trip WHERE id = {trip_id}"
+        query = f"SELECT id FROM trip WHERE id = {trip_id} and origin != 'test'"
         with connection:
             responce = connection.GET(query)
             return responce
@@ -60,7 +60,7 @@ class AdminServiceTicketAuth:
             connection.POST(query)
 
     def all_trips(self):
-        query = f"SELECT * FROM trip"
+        query = f"SELECT * FROM trip WHERE origin != 'test'"
         with connection:
             responce = connection.GET(query)
             return responce
