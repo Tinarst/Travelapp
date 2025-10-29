@@ -16,9 +16,14 @@ class AdminService:
             departure_date = datetime.datetime.strptime(
                 departure_date, "%Y-%m-%d %H:%M:%S"
             )
+            if datetime.datetime.now() > departure_date:
+                raise InvalidDateTime()
+        except InvalidDateTime:
+            print("Past date")
         except:
             print("Invalid DateTime")
         else:
+            
             price = float(price)
             capacity = int(capacity)
 
@@ -77,6 +82,8 @@ class AdminService:
             print("Trip Does not Exist")
         except InvalidDateTime:
             print("Can not update the trip to the past")
+        except ValueError:
+            print("Invalid Date Time")
         else:
             self.auth.update_trip(trip_id, departure_date)
             
