@@ -94,7 +94,7 @@ def CLI():
 
                     if available_chairs:
 
-                        print(f"Available chairs: {available_chairs}")
+                        print(f"Available chairs: {sorted(available_chairs)}")
 
                         chair_number = int(
                             input("enter chair number position: ").strip()
@@ -289,9 +289,9 @@ def CLI():
                 print(f"{username} Logged in")
 
                 user_panel(USER)
-            except Exception as e:
-                print(e)
-                CLI()
+            except:
+                ...
+        CLI()
 
     elif command == 2:
         try:
@@ -337,6 +337,7 @@ def CLI():
 
             if cli_agent.login_admin(admin_username, admin_password):
                 admin = AdminService()
+                print("welcome")
                 __admin_panel(admin)
             else:
                 print("Coud not login")
