@@ -1,6 +1,8 @@
 __pycache__/
+*.log
 *.pyc
 *.pyo
 *.db
 *.db
 .env
+*cache
